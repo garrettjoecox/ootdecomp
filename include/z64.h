@@ -309,9 +309,16 @@ struct MapSelectState;
 
 typedef struct {
     /* 0x00 */ char* name;
-    /* 0x04 */ void (*loadFunc)(struct MapSelectState*, s32);
     /* 0x08 */ s32 entranceIndex;
-} SceneSelectEntry; // size = 0xC
+} EntranceSelectEntry;
+
+typedef struct {
+    /* 0x00 */ char* name;
+    /* 0x04 */ void (*loadFunc)(struct SelectContext*, s32);
+    /* 0x08 */ s16 sceneId;
+    /*      */ u32 entranceCount;
+    /* 0x0A */ EntranceSelectEntry* entrances;
+} SceneSelectEntry;
 
 typedef struct MapSelectState {
     /* 0x0000 */ GameState state;
